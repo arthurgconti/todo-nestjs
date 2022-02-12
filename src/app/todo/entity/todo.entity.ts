@@ -20,7 +20,7 @@ export class TodoEntity {
 
   @ApiProperty()
   @Column({ name: 'is_done', type: 'smallint', width: 1 })
-  idDone: number;
+  isDone: number;
 
   @ApiProperty()
   @CreateDateColumn({ name: 'created_at' })
@@ -33,4 +33,13 @@ export class TodoEntity {
   @ApiProperty()
   @DeleteDateColumn({ name: 'deleted_at' })
   deletedAt: string;
+
+  constructor(todo?: Partial<TodoEntity>) {
+    this.id = todo?.id;
+    this.task = todo?.task;
+    this.isDone = todo?.isDone;
+    this.createdAt = todo?.createdAt;
+    this.updatedAt = todo?.updatedAt;
+    this.deletedAt = todo?.deletedAt;
+  }
 }
